@@ -1,0 +1,24 @@
+---
+- include: prepare.yml
+- include: download.yml
+
+- name: check chef server
+  shell: cat /opt/opscode/version-manifest.txt
+  register: chef_exist
+  changed_when: false
+  ignore_errors: True
+
+- include: install.yml
+  when: chef_exist.stdout.find('chef-server') == -1
+
+- include: packages.yml
+  when: chef_exist.stdout.find('chef-server') == -1
+
+- name: check chef server again
+  shell: cat /opt/opscode/version-manifest.txt
+  register: chef_exist2
+  changed_when: false
+  ignore_errors: True
+
+- include: upgrade.yml
+  when: chef_exist2.stdout.find('{{ chef_version }}') == -1

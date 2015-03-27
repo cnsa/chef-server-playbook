@@ -1,0 +1,9 @@
+---
+- name: chef server install
+  command: rpm -Uvh /tmp/{{ chef_rpm.file }}
+  notify:
+  - chef reconfigure
+  - create admin
+  - create org
+
+- meta: flush_handlers

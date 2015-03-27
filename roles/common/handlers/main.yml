@@ -1,0 +1,4 @@
+---
+- include: system.yml
+- include: iptables.yml
+- include: chef.yml

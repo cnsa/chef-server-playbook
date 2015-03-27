@@ -1,0 +1,16 @@
+---
+- name: install chef manage
+  command: chef-server-ctl install opscode-manage
+  notify:
+  - manage reconfigure
+  - chef reconfigure
+
+- meta: flush_handlers
+
+- name: install chef push jobs
+  command: chef-server-ctl install opscode-push-jobs-server
+  notify:
+  - push jobs reconfigure
+  - chef reconfigure
+
+- meta: flush_handlers

@@ -1,0 +1,13 @@
+---
+- name: clean services
+  command: chef-server-ctl reconfigure
+- name: stop services
+  command: chef-server-ctl stop
+- name: update rpm
+  command: rpm -Uvh --nopostun /tmp/{{ chef_rpm.file }}
+  notify:
+  - chef upgrade
+  - chef start
+  - chef cleanup
+
+- meta: flush_handlers

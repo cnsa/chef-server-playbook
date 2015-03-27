@@ -1,0 +1,31 @@
+---
+
+- name: Chef Server Common Tasks
+  hosts: all
+  sudo: yes
+  tags:
+    - prod
+    - dev
+
+  roles:
+    - role: common
+
+- name: Development Environment Tasks
+  hosts: vagrant
+  sudo: yes
+  sudo_user: vagrant
+  remote_user: vagrant
+  tags: dev
+
+  roles:
+    # - role: dev
+
+- name: Production Deploy Tasks
+  hosts: production
+  sudo: yes
+  sudo_user: "{{ admin_user }}"
+  remote_user: "{{ admin_user }}"
+  tags: prod
+
+  roles:
+    # - role: prod

@@ -1,0 +1,8 @@
+---
+- name: download chef server rpm
+  get_url: url="{{ chef_rpm.url }}/{{ chef_rpm.file }}" dest="/tmp/{{ chef_rpm.file }}" sha256sum={{ chef_rpm.sum }}
+  when: chef_rpm.path == ""
+
+- name: copy chef server rpm
+  copy: src="{{ chef_rpm.path }}/{{ chef_rpm.file }}" dest="/tmp/{{ chef_rpm.file }}"
+  when: chef_rpm.path != ""

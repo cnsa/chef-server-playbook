@@ -1,0 +1,5 @@
+---
+- name: network restart
+  service: name=network state=restarted
+- name: sshd restart
+  service: name=sshd state=restarted

@@ -1,0 +1,5 @@
+---
+
+dev_user: vagrant
+production: false
+network_interface: ansible_eth1

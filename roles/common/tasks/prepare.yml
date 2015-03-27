@@ -1,0 +1,51 @@
+---
+- name: install packages
+  yum: name={{ item }} state=present
+  with_items:
+    - libselinux-python
+    - mc
+    - nano
+
+- include: users.yml
+- include: ssh.yml
+
+- name: get iptables rules
+  shell: iptables -L -n
+  register: iptablesrules
+  changed_when: false
+  always_run: yes
+
+- name: open ports via iptables
+  command: "/sbin/iptables -I INPUT 1 -p tcp --dport {{ item }} -m state --state NEW,ESTABLISHED -j ACCEPT"
+  when: iptablesrules.stdout.find("dpt:{{ item }}") == -1
+  with_items:
+    - 80
+    - 443
+    - 9683
+  notify:
+  - iptables save
+  - iptables restart
+
+- name: set hosts
+  lineinfile:
+    dest=/etc/hosts
+    line="127.0.1.1 {{ inventory_hostname }} {{ ansible_hostname }}"
+    regexp="^127\.0\.1\.1.*$"
+    state=present
+
+- name: set hosts
+  lineinfile:
+    dest=/etc/hosts
+    line="{{ hostvars[inventory_hostname][network_interface]['ipv4']['address'] }} {{ inventory_hostname }} {{ ansible_hostname }}"
+    regexp="^{{ hostvars[inventory_hostname][network_interface]['ipv4']['address'] }}.*$"
+    state=present
+
+- name: set fqdn
+  lineinfile:
+    dest=/etc/sysconfig/network
+    line="HOSTNAME={{ inventory_hostname }}"
+    regexp="HOSTNAME="
+    state=present
+  notify: network restart
+
+- meta: flush_handlers
