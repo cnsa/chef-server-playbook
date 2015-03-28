@@ -49,7 +49,7 @@ For update Chef server 12 & CentOS 6 components via `yum`:
 
 Open: https://chef.cnsa.ru/
 
-SSH: `$ SERVER_ADMIN_USER@chef.cnsa.ru`
+SSH: `$ ssh SERVER_ADMIN_USER@chef.cnsa.ru -i PATH_TO_YOUR_KEY_OR_ADD_DOMAIN_TO_CONFIG`
 
 ### Both:
 
