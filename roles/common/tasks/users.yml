@@ -2,11 +2,9 @@
 - name: create admin user
   user: name="{{ admin_user }}" shell=/bin/bash state=present
   register: admin_created
+  notify:
+  - copy root keys
   when: production
-
-- name: copy root keys
-  shell: "mkdir -p /home/{{ admin_user }}/.ssh && cp /root/.ssh/* /home/{{ admin_user }}/.ssh && chmod -R 0700 /home/{{ admin_user }}/.ssh && chown -R {{ admin_user }}:{{ admin_user }} /home/{{ admin_user }}/.ssh"
-  when: admin_created|skipped
 
 - name: update sudoers
   template:

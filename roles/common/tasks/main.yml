@@ -11,8 +11,9 @@
 - include: install.yml
   when: chef_exist.stdout.find('chef-server') == -1
 
-- include: packages.yml
-  when: chef_exist.stdout.find('chef-server') == -1
+- name: update server
+  yum: name=* state=latest
+  when: chef_exist.stdout.find('chef-server') == -1 or server_update == 'y'
 
 - name: check chef server again
   shell: cat /opt/opscode/version-manifest.txt
@@ -21,4 +22,4 @@
   ignore_errors: True
 
 - include: upgrade.yml
-  when: chef_exist2.stdout.find('{{ chef_version }}') == -1
+  when: chef_exist2.stdout.find('{{ chef_version }}') == -1 and update == 'y'

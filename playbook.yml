@@ -23,8 +23,8 @@
 - name: Production Deploy Tasks
   hosts: production
   sudo: yes
-  sudo_user: "{{ admin_user }}"
-  remote_user: "{{ admin_user }}"
+  sudo_user: "{{ ansible_ssh_user }}"
+  remote_user: "{{ ansible_ssh_user }}"
   tags: prod
 
   roles:

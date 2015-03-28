@@ -11,3 +11,5 @@
   - chef cleanup
 
 - meta: flush_handlers
+
+- include: packages.yml

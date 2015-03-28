@@ -2,12 +2,26 @@
 - name: install packages
   yum: name={{ item }} state=present
   with_items:
+    - ntp
+    - crontabs
     - libselinux-python
     - mc
     - nano
 
+- service: name=ntpd state=started enabled=yes
+
+- name: check for qpid
+  shell: rpm -qa | grep qpid
+  register: qpidd_exist
+  changed_when: false
+  ignore_errors: True
+
+- service: name=qpidd state=stopped enabled=no
+  when: qpidd_exist|skipped
+
 - include: users.yml
 - include: ssh.yml
+- include: selinux.yml
 
 - name: get iptables rules
   shell: iptables -L -n

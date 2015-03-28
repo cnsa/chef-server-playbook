@@ -1,14 +1,18 @@
 ---
 # Variables listed here are applicable to all host groups
 
-chef_version: 12.0.6
+init: 'n'
+update: 'n'
+server_update: 'n'
+
+chef_version: 12.0.7
 chef_version_full: "{{ chef_version }}-1"
 
 chef_rpm:
   path: "{{ lookup('env', 'CHEF_RPM_PATH') }}"
   url: https://web-dl.packagecloud.io/chef/stable/packages/el/6/
   file: chef-server-core-{{ chef_version_full }}.el6.x86_64.rpm
-  sum: a7b9faa17a5cdecde04546b4eb7a6448f74083936b2e200e90fb4e3918103c86
+  sum: f7a21b392f410d7485dff4b5a06ee2da92807a4875b51568f4a960a1aa6a0f83
 
 network_interface: ansible_eth0
 
@@ -36,7 +40,7 @@ sshd:
   - name: ChallengeResponseAuthentication
     value: "no"
   - name: UsePAM
-    value: "no"
+    value: "yes"
   - name: PermitRootLogin
     value: "no"
   - name: PasswordAuthentication
