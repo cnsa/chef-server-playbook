@@ -1,0 +1,10 @@
+export CHEF_PASSWORD=SOMEPASSWORD
+export CHEF_RPM_PATH="PATH TO LOCAL RPM"
+export CHEF_USER="someuser"
+export CHEF_FIRSTNAME="Name"
+export CHEF_LASTNAME="LastName"
+export CHEF_EMAIL="some@email.com"
+export CHEF_RSA_FILE="rsafilename.pem"
+export CHEF_ORGANIZATION_ID="organization_id"
+export CHEF_ORGANIZATION="Organization Name"
+export SERVER_ADMIN="SERVER_ADMIN_USER"
