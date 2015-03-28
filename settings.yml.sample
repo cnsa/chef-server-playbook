@@ -24,10 +24,12 @@ chef:
   manage:
     # - name: disable_sign_up
     #   value: true
-    - name: "logging.chef_log_level"
-      value: "info"
-    - name: "logging.log_level"
-      value: "info"
+    # - name: "logging.chef_log_level"
+    #   value: "info"
+    # - name: "logging.log_level"
+    #   value: "info"
+    # - name: secret_token
+    #   value: 21e75caa2cd91ef21c3d59a38cf21e82ec156b0d49521579781224911bd441177022bf589cc2d1da180a2395417bb87c8578931def409ce866bc217448cbc75c
   server:
     - name: api_fqdn
       value: "{{ inventory_hostname }}"
