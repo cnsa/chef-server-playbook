@@ -42,7 +42,7 @@ chef:
     - name: api_version
       value: "ipv4"
     - name: notification_email
-      value: "api@cnsa.ru"
+      value: "{{ lookup('env', 'CHEF_EMAIL') }}"
     - name: "nginx['ssl_protocols']"
       value: "TLSv1 TLSv1.1 TLSv1.2"
     - name: "nginx['ssl_ciphers']"
