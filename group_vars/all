@@ -5,50 +5,9 @@ init: 'n'
 update: 'n'
 server_update: 'n'
 
-chef_version: 12.0.7
-chef_version_full: "{{ chef_version }}-1"
-
-chef_rpm:
-  path: "{{ lookup('env', 'CHEF_RPM_PATH') }}"
-  url: https://web-dl.packagecloud.io/chef/stable/packages/el/6/
-  file: chef-server-core-{{ chef_version_full }}.el6.x86_64.rpm
-  sum: f7a21b392f410d7485dff4b5a06ee2da92807a4875b51568f4a960a1aa6a0f83
-
 network_interface: ansible_eth0
 
 production: true
-
-chef:
-  user: "{{ lookup('env', 'CHEF_USER') }}"
-  firstname: "{{ lookup('env', 'CHEF_FIRSTNAME') }}"
-  lastname: "{{ lookup('env', 'CHEF_LASTNAME') }}"
-  email:  "{{ lookup('env', 'CHEF_EMAIL') }}"
-  password: "{{ lookup('env', 'CHEF_PASSWORD') }}"
-  rsa_file:  "{{ lookup('env', 'CHEF_RSA_FILE') }}"
-  organization_id: "{{ lookup('env', 'CHEF_ORGANIZATION_ID') }}"
-  organization: "{{ lookup('env', 'CHEF_ORGANIZATION') }}"
-  manage:
-    - name: disable_sign_up
-      value: true
-    - name: "logging.chef_log_level"
-      value: "info"
-    - name: "logging.log_level"
-      value: "info"
-  server:
-    - name: api_fqdn
-      value: "{{ inventory_hostname }}"
-    - name: bootstrap
-      value: true
-    - name: api_version
-      value: "ipv4"
-    - name: notification_email
-      value: "{{ lookup('env', 'CHEF_EMAIL') }}"
-    - name: "nginx['ssl_protocols']"
-      value: "TLSv1 TLSv1.1 TLSv1.2"
-    - name: "nginx['ssl_ciphers']"
-      value: "HIGH:MEDIUM:!LOW:!kEDH:!aNULL:!ADH:!eNULL:!EXP:!SSLv2:!SEED:!CAMELLIA:!PSK"
-
-admin_user: "{{ lookup('env', 'SERVER_ADMIN') }}"
 
 sudoers_filename: "admin"
 sudoers_nopasswd: true
@@ -56,6 +15,7 @@ sudoers:
   - name: "{{ admin_user }}"
     users:
       - "ALL"
+
 sshd:
   - name: ChallengeResponseAuthentication
     value: "no"

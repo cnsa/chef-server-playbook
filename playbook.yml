@@ -10,6 +10,9 @@
   roles:
     - role: common
 
+  vars_files:
+    - settings.yml
+
 - name: Development Environment Tasks
   hosts: vagrant
   sudo: yes

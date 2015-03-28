@@ -1,4 +1,4 @@
-## Chef server Deployment tools
+## Chef server 12 Deployment tools
 
 Manifests / modules to help the deploy of Chef server 12 on CentOS 6 with either Ansible
 
@@ -17,6 +17,13 @@ The Chef server 12 has the following prerequisites:
 - A group account under which services will run
 
 I reviewed the instructions ( here http://docs.chef.io/server/install_server.html#standalone ) for the CentOS 6.
+
+## Configuration
+
+1. Copy `hosts.sample` file into `hosts`.
+2. Edit domain/credentials settings in `hosts`.
+3. Copy `settings.yml.sample` file into `settings.yml`.
+4. Edit primary settings in `settings.yml`.
 
 ## Usage
 
@@ -54,22 +61,6 @@ SSH: `$ ssh SERVER_ADMIN_USER@chef.cnsa.ru -i PATH_TO_YOUR_KEY_OR_ADD_DOMAIN_TO_
 ### Both:
 
     $ ansible-playbook playbook.yml -i hosts  
-
-## Configuration
-
-Use `direnv` or similar to provide ENV variables with:
-
-    export CHEF_PASSWORD=SOMEPASSWORD
-    export CHEF_RPM_PATH="PATH TO LOCAL RPM"
-    export CHEF_USER="someuser"
-    export CHEF_FIRSTNAME="Name"
-    export CHEF_LASTNAME="LastName"
-    export CHEF_EMAIL="some@email.com"
-    export CHEF_RSA_FILE="rsafilename.pem"
-    export CHEF_ORGANIZATION_ID="organization_id"
-    export CHEF_ORGANIZATION="Organization Name"
-
-    export SERVER_ADMIN="SERVER_ADMIN_USER"
 
 ## Configure Chef server 12
 
