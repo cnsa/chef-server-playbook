@@ -23,3 +23,6 @@
 
 - include: upgrade.yml
   when: chef_exist2.stdout.find('{{ chef_version }}') == -1 and update == 'y'
+
+- include: configure.yml
+  when: chef_exist2.stdout.find('chef-server') != -1

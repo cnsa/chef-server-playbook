@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+{% for line in chef.server %}
+{{ line.name }} = {{ '"'+ line.value + '"' if line.value is string else line.value|lower }}
+{% endfor %}

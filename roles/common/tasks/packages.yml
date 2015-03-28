@@ -14,3 +14,11 @@
   - chef reconfigure
 
 - meta: flush_handlers
+
+- name: install chef reporting
+  command: chef-server-ctl install opscode-reporting
+  notify:
+  - reporting reconfigure
+  - chef reconfigure
+
+- meta: flush_handlers

@@ -1,0 +1,23 @@
+---
+- name: update chef manage config
+  template:
+    src: manage.rb.j2
+    dest: "/etc/opscode-manage/manage.rb"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+  - manage reconfigure
+  - chef reconfigure
+
+- name: update chef server config
+  template:
+    src: chef-server.rb.j2
+    dest: "/etc/opscode/chef-server.rb"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+  - chef reconfigure
+
+- meta: flush_handlers

@@ -19,4 +19,6 @@
 - name: manage reconfigure
   command: opscode-manage-ctl reconfigure
 - name: push jobs reconfigure
-  command: opscode-push-jobs-server-ctl reconfigure  
+  command: opscode-push-jobs-server-ctl reconfigure
+- name: reporting reconfigure
+  command: opscode-reporting-ctl reconfigure    

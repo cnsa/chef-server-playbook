@@ -27,6 +27,26 @@ chef:
   rsa_file:  "{{ lookup('env', 'CHEF_RSA_FILE') }}"
   organization_id: "{{ lookup('env', 'CHEF_ORGANIZATION_ID') }}"
   organization: "{{ lookup('env', 'CHEF_ORGANIZATION') }}"
+  manage:
+    - name: disable_sign_up
+      value: true
+    - name: "logging.chef_log_level"
+      value: "info"
+    - name: "logging.log_level"
+      value: "info"
+  server:
+    - name: api_fqdn
+      value: "{{ inventory_hostname }}"
+    - name: bootstrap
+      value: true
+    - name: api_version
+      value: "ipv4"
+    - name: notification_email
+      value: "api@cnsa.ru"
+    - name: "nginx['ssl_protocols']"
+      value: "TLSv1 TLSv1.1 TLSv1.2"
+    - name: "nginx['ssl_ciphers']"
+      value: "HIGH:MEDIUM:!LOW:!kEDH:!aNULL:!ADH:!eNULL:!EXP:!SSLv2:!SEED:!CAMELLIA:!PSK"
 
 admin_user: "{{ lookup('env', 'SERVER_ADMIN') }}"
 

@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+chef_documentation_url 'http://docs.chef.io'
+{% for line in chef.manage %}
+{{ line.name }} {{ '"'+ line.value + '"' if line.value is string else line.value|lower }}
+{% endfor %}
