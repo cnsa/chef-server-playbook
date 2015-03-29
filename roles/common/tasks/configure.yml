@@ -6,6 +6,7 @@
     mode: 0644
     owner: root
     group: root
+  when: manage.enable
   notify:
   - manage reconfigure
   - chef reconfigure

@@ -21,25 +21,34 @@ chef:
   rsa_file: /path/to/rsafilename.pem
   organization_id: organization_id
   organization: Organization Name
-  manage:
-    # - name: disable_sign_up
-    #   value: true
+  server:
+    options:
+      - name: api_fqdn
+        value: "{{ inventory_hostname }}"
+      - name: bootstrap
+        value: true
+      # - name: api_version
+      #   value: "ipv4"
+      - name: notification_email
+        value: "{{ chef_email }}"
+      # - name: "nginx['ssl_protocols']"
+      #   value: "TLSv1 TLSv1.1 TLSv1.2"
+      # - name: "nginx['ssl_ciphers']"
+      #   value: "HIGH:MEDIUM:!LOW:!kEDH:!aNULL:!ADH:!eNULL:!EXP:!SSLv2:!SEED:!CAMELLIA:!PSK"
+manage:
+  enable: false
+  options:
+    - name: disable_sign_up
+      value: false
     # - name: "logging.chef_log_level"
     #   value: "info"
     # - name: "logging.log_level"
     #   value: "info"
     # - name: secret_token
     #   value: 21e75caa2cd91ef21c3d59a38cf21e82ec156b0d49521579781224911bd441177022bf589cc2d1da180a2395417bb87c8578931def409ce866bc217448cbc75c
-  server:
-    - name: api_fqdn
-      value: "{{ inventory_hostname }}"
-    - name: bootstrap
-      value: true
-    # - name: api_version
-    #   value: "ipv4"
-    - name: notification_email
-      value: "{{ chef_email }}"
-    # - name: "nginx['ssl_protocols']"
-    #   value: "TLSv1 TLSv1.1 TLSv1.2"
-    # - name: "nginx['ssl_ciphers']"
-    #   value: "HIGH:MEDIUM:!LOW:!kEDH:!aNULL:!ADH:!eNULL:!EXP:!SSLv2:!SEED:!CAMELLIA:!PSK"
+reporting:
+  enable: false
+  options: []
+pushy:
+  enable: false
+  options: []

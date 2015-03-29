@@ -1,6 +1,7 @@
 ---
 - name: install chef manage
   command: chef-server-ctl install opscode-manage
+  when: manage.enable
   notify:
   - manage reconfigure
   - chef reconfigure
@@ -9,6 +10,7 @@
 
 - name: install chef push jobs
   command: chef-server-ctl install opscode-push-jobs-server
+  when: pushy.enable
   notify:
   - push jobs reconfigure
   - chef reconfigure
@@ -17,6 +19,7 @@
 
 - name: install chef reporting
   command: chef-server-ctl install opscode-reporting
+  when: reporting.enable
   notify:
   - reporting reconfigure
   - chef reconfigure
