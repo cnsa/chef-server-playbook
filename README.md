@@ -42,7 +42,7 @@ For the first time we will login with `root`:
 
     $ ansible-playbook playbook.yml -i hosts --limit="production" --extra-args="init=y"
 
-Next time, when root access will be restricted, use environment variable for `SERVER_ADMIN_USER`:
+Next time, when root access will be restricted:
 
     $ ansible-playbook playbook.yml -i hosts --limit="production"
 
@@ -54,7 +54,7 @@ For update Chef server 12 & CentOS 6 components via `yum`:
 
     $ ansible-playbook playbook.yml -i hosts --extra-args="server_update=y"
 
-Open: https://chef.cnsa.ru/
+Open: https://YOUR_PRODUCTION_SERVER/
 
 SSH: `$ ssh SERVER_ADMIN_USER@chef.cnsa.ru -i PATH_TO_YOUR_KEY_OR_ADD_DOMAIN_TO_CONFIG`
 

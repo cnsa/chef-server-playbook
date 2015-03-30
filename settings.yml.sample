@@ -22,6 +22,11 @@ chef:
   organization_id: organization_id
   organization: Organization Name
   server:
+    ports:
+      - 80
+      - 443
+      - 9683
+      # - "10000:10003" # Pushy ports
     options:
       - name: api_fqdn
         value: "{{ inventory_hostname }}"

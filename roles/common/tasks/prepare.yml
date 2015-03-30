@@ -31,12 +31,8 @@
 
 - name: open ports via iptables
   command: "/sbin/iptables -I INPUT 1 -p tcp --dport {{ item }} -m state --state NEW,ESTABLISHED -j ACCEPT"
-  when: iptablesrules.stdout.find("dpt:{{ item }}") == -1
-  with_items:
-    - 80
-    - 443
-    - 9683
-    - "10000:10003"
+  when: iptablesrules.stdout.find("dpt:{{ item }}") == -1 and iptablesrules.stdout.find("dpts:{{ item }}") == -1
+  with_items: chef.server.ports
   notify:
   - iptables save
   - iptables restart
