@@ -36,6 +36,7 @@
     - 80
     - 443
     - 9683
+    - "10000:10003"
   notify:
   - iptables save
   - iptables restart
