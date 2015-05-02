@@ -40,6 +40,17 @@ SSH: `$ vagrant ssh`
 
     $ ansible-playbook azure.yml"
 
+*Example vars*:
+You can support it with (https://github.com/zimbatm/direnv)[Direnv] or similar tool.
+
+    AZURE_CERT_PATH="/path/to/azure.pem"
+    AZURE_SUBSCRIPTION_ID="SOMELONGID"
+    AZURE_SSH_PEM="/path/to/ssh.pem"
+    AZURE_VM_NAME="VMNAME"
+    AZURE_VM_USER="VMUSER"
+
+    export AZURE_CERT_PATH AZURE_SUBSCRIPTION_ID AZURE_SSH_PEM AZURE_VM_NAME AZURE_VM_USER
+
 ### Production:
 
 For the first time if we need login as `root`:
