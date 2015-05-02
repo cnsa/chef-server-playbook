@@ -36,11 +36,15 @@ Open: https://192.168.0.43/
 
 SSH: `$ vagrant ssh`
 
+### Azure:
+
+    $ ansible-playbook azure.yml"
+
 ### Production:
 
-For the first time we will login with `root`:
+For the first time if we need login as `root`:
 
-    $ ansible-playbook playbook.yml -i hosts --limit="production" --extra-args="init=y"
+    $ ansible-playbook playbook.yml -i hosts --limit="production" --extra-vars="init=y"
 
 Next time, when root access will be restricted:
 
@@ -48,11 +52,11 @@ Next time, when root access will be restricted:
 
 For only Chef server 12 updates, with cleanup & modules update:
 
-    $ ansible-playbook playbook.yml -i hosts --extra-args="update=y"
+    $ ansible-playbook playbook.yml -i hosts --extra-vars="update=y"
 
 For update Chef server 12 & CentOS 6 components via `yum`:
 
-    $ ansible-playbook playbook.yml -i hosts --extra-args="server_update=y"
+    $ ansible-playbook playbook.yml -i hosts --extra-vars="server_update=y"
 
 Open: https://YOUR_PRODUCTION_SERVER/
 

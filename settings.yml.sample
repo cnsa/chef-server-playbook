@@ -1,9 +1,9 @@
 ---
 admin_user: SERVER_ADMIN_USER
 
-chef_version: 12.0.7
+chef_version: 12.0.8
 chef_version_full: "{{ chef_version }}-1"
-chef_version_sum: f7a21b392f410d7485dff4b5a06ee2da92807a4875b51568f4a960a1aa6a0f83
+chef_version_sum: ba08e71609c5e794b21e9ebdd9c28c281f1b7ea72af5244c38ef8da76386adc8
 
 chef_rpm:
   path: /path/to/local/chef/dir
@@ -22,6 +22,14 @@ chef:
   organization_id: organization_id
   organization: Organization Name
   server:
+    ports_azure:
+      - 80
+      - 443
+      - 9683
+      # - 10000
+      # - 10001
+      # - 10002
+      # - 10003
     ports:
       - 80
       - 443

@@ -2,6 +2,16 @@
 # Variables listed here are applicable to all host groups
 
 init: 'n'
+azure:
+  name: "{{ lookup('env','AZURE_VM_NAME') }}"
+  subscription_id: "{{ lookup('env','AZURE_SUBSCRIPTION_ID') }}"
+  ssh_pem: "{{ lookup('env','AZURE_SSH_PEM') }}"
+  ssh_port: 22
+  user: "{{ lookup('env','AZURE_VM_USER') }}"
+  region: "{{ lookup('env','AZURE_SERVICE_LOCATION') }}"
+  image: "5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-66-20150325"
+  size: "Basic_A3"
+
 update: 'n'
 server_update: 'n'
 
@@ -26,7 +36,7 @@ sshd:
   - name: PasswordAuthentication
     value: "no"
   - name: Port
-    value: 22
+    value: "{{azure.ssh_port}}"
   - name: Protocol
     value: 2
   - name: PubkeyAuthentication
