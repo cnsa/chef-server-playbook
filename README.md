@@ -40,8 +40,8 @@ SSH: `$ vagrant ssh`
 
     $ ansible-playbook azure.yml"
 
-*Example vars*:
-You can support it with (https://github.com/zimbatm/direnv)[Direnv] or similar tool.
+**Example vars**:
+You can support it with [Direnv](https://github.com/zimbatm/direnv) or similar tool.
 
     AZURE_CERT_PATH="/path/to/azure.pem"
     AZURE_SUBSCRIPTION_ID="SOMELONGID"
