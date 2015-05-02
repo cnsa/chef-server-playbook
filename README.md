@@ -38,7 +38,7 @@ SSH: `$ vagrant ssh`
 
 ### Azure:
 
-    $ ansible-playbook azure.yml"
+    $ ansible-playbook azure.yml
 
 **Example vars**:
 You can support it with [Direnv](https://github.com/zimbatm/direnv) or similar tool.
@@ -47,8 +47,9 @@ You can support it with [Direnv](https://github.com/zimbatm/direnv) or similar t
     AZURE_SSH_PEM="/path/to/ssh.pem"
     AZURE_VM_NAME="VMNAME"
     AZURE_VM_USER="VMUSER"
+    AZURE_VM_BLOB="https://someurl.blob.core.windows.net/vhds"
 
-    export AZURE_SUBSCRIPTION_ID AZURE_SSH_PEM AZURE_VM_NAME AZURE_VM_USER
+    export AZURE_SUBSCRIPTION_ID AZURE_SSH_PEM AZURE_VM_NAME AZURE_VM_USER AZURE_VM_BLOB
 
 ### Production:
 

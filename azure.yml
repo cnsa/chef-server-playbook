@@ -11,9 +11,9 @@
       changed_when: false
       always_run: yes
     - name: Create Server
-      shell: "azure vm create {{ azure.name }} {{ azure.image }} -c -g {{ admin_user }} -e {{ azure.ssh_port }} -t {{ azure.ssh_pem }} -P -z {{ azure.size }} -l '{{ azure.region }}' -s {{ azure.subscription_id }}"
+      shell: "azure vm create {{ azure.name }} {{ azure.image }} -c -g {{ admin_user }} -e {{ azure.ssh_port }} -u {{ azure.blob_url }}/{{ azure.name }}.vhd -t {{ azure.ssh_pem }} -P -z {{ azure.size }} -l '{{ azure.region }}' -s {{ azure.subscription_id }}"
       when: servers.stdout.find("{{ azure.name }}") == -1
-    - name: Get endpoints
+    - name: Getting endpoints
       shell: "azure vm endpoint list {{ azure.name }} -s {{ azure.subscription_id }}"
       register: endpoints
       changed_when: false
