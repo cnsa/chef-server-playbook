@@ -7,4 +7,4 @@ letsencrypt_domain_config: "{{ letsencrypt_etc_dir }}/{{ inventory_hostname }}-w
 letsencrypt_repo_url: 'https://github.com/letsencrypt/letsencrypt.git'
 command: letsencrypt-auto
 domain: "{{ inventory_hostname }}"
-cert_path: /etc/letsencrypt/live/"{{ domain }}"
+cert_path: "{{ letsencrypt_etc_dir }}/live/{{ domain }}"
