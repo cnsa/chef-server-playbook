@@ -3,3 +3,4 @@
 .envrc
 hosts
 settings.yml
+*.retry
