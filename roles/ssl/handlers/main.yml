@@ -1,0 +1,5 @@
+---
+- name: nginx restart
+  command: chef-server-ctl restart nginx
+  sudo: yes
+  sudo_user: root

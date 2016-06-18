@@ -1,6 +1,6 @@
 ---
 - name: install chef manage
-  command: chef-server-ctl install opscode-manage
+  command: chef-server-ctl install chef-manage
   when: manage.enable
   notify:
   - manage reconfigure

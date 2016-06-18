@@ -9,6 +9,8 @@
   command: chef-server-ctl start
 - name: chef stop
   command: chef-server-ctl stop
+- name: nginx restart
+  command: chef-server-ctl restart nginx
 
 - name: create admin
   shell: chef-server-ctl user-create {{ chef.user }} {{ chef.firstname }} {{ chef.lastname }} {{ chef.email }} {{ chef.password }} --filename {{ chef.rsa_file }}
@@ -17,8 +19,8 @@
   shell: chef-server-ctl org-create {{ chef.organization_id }} {{ chef.organization }} --association_user {{ chef.user }} {{ chef.password }} -f "/root/{{ chef.organization_id }}-validator.pem"
 
 - name: manage reconfigure
-  command: opscode-manage-ctl reconfigure
+  command: chef-manage-ctl reconfigure
 - name: push jobs reconfigure
   command: opscode-push-jobs-server-ctl reconfigure
 - name: reporting reconfigure
-  command: opscode-reporting-ctl reconfigure    
+  command: opscode-reporting-ctl reconfigure

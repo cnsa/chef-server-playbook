@@ -1,0 +1,12 @@
+---
+
+- name: Production Deploy Tasks
+  hosts: production
+  sudo: yes
+  sudo_user: "{{ ansible_ssh_user }}"
+  remote_user: "{{ ansible_ssh_user }}"
+  tags: prod
+  vars_files:
+    - settings.yml
+  roles:
+    - ssl

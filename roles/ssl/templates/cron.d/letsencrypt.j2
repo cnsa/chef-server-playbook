@@ -1,0 +1,4 @@
+#!/bin/bash
+{{ letsencrypt_dir }}/letsencrypt-auto certonly --webroot --agree-tos --renew-by-default --config {{ letsencrypt_domain_config }} 2>&1
+chef-server-ctl restart nginx
+exit 0

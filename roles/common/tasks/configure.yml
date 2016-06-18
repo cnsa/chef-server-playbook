@@ -2,7 +2,7 @@
 - name: update chef manage config
   template:
     src: manage.rb.j2
-    dest: "/etc/opscode-manage/manage.rb"
+    dest: "/etc/chef-manage/manage.rb"
     mode: 0644
     owner: root
     group: root

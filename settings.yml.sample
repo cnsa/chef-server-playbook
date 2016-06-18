@@ -1,9 +1,9 @@
 ---
 admin_user: SERVER_ADMIN_USER
 
-chef_version: 12.0.8
+chef_version: 12.6.0
 chef_version_full: "{{ chef_version }}-1"
-chef_version_sum: ba08e71609c5e794b21e9ebdd9c28c281f1b7ea72af5244c38ef8da76386adc8
+chef_version_sum: 84b21be5bb38c2c6279a957359b614fcaa43c710e0ea516eb547701b7348246b
 
 chef_rpm:
   path: /path/to/local/chef/dir
@@ -44,6 +44,16 @@ chef:
       #   value: "ipv4"
       - name: notification_email
         value: "{{ chef_email }}"
+
+      # - name: nginx['ssl_certificate']
+      #   value: '/etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem'
+      # - name: nginx['ssl_certificate_key']
+      #   value: '/etc/letsencrypt/live/{{ inventory_hostname }}/privkey.pem'
+      # - name: "nginx['ssl_protocols']"
+      #   value: "TLSv1 TLSv1.1 TLSv1.2"
+      # - name: "nginx['ssl_ciphers']"
+      #   value: "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"
+
       # - name: "nginx['ssl_protocols']"
       #   value: "TLSv1 TLSv1.1 TLSv1.2"
       # - name: "nginx['ssl_ciphers']"

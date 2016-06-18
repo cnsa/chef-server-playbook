@@ -1,0 +1,10 @@
+---
+web_root: /var/opt/opscode/nginx/html
+ius_release: https://rhel6.iuscommunity.org/ius-release.rpm
+letsencrypt_dir: /opt/letsencrypt
+letsencrypt_etc_dir: /etc/letsencrypt
+letsencrypt_domain_config: "{{ letsencrypt_etc_dir }}/{{ inventory_hostname }}-webroot.ini"
+letsencrypt_repo_url: 'https://github.com/letsencrypt/letsencrypt.git'
+command: letsencrypt-auto
+domain: "{{ inventory_hostname }}"
+cert_path: /etc/letsencrypt/live/"{{ domain }}"

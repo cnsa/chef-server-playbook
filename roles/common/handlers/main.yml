@@ -1,7 +1,44 @@
 ---
-- include: system.yml
-- include: iptables.yml
-- include: chef.yml
+# - include: system.yml
+- name: network restart
+  service: name=network state=restarted
+- name: sshd restart
+  service: name=sshd state=restarted
+
+# - include: iptables.yml
+- name: iptables save
+  command: service iptables save
+
+- name: iptables restart
+  service: name=iptables state=restarted
+
+# - include: chef.yml
+- name: chef reconfigure
+  command: chef-server-ctl reconfigure
+- name: chef cleanup
+  command: chef-server-ctl cleanup
+- name: chef upgrade
+  command: chef-server-ctl upgrade
+- name: chef start
+  command: chef-server-ctl start
+- name: chef stop
+  command: chef-server-ctl stop
+- name: nginx restart
+  command: chef-server-ctl restart nginx
+
+- name: create admin
+  shell: chef-server-ctl user-create {{ chef.user }} {{ chef.firstname }} {{ chef.lastname }} {{ chef.email }} {{ chef.password }} --filename {{ chef.rsa_file }}
+
+- name: create org
+  shell: chef-server-ctl org-create {{ chef.organization_id }} {{ chef.organization }} --association_user {{ chef.user }} {{ chef.password }} -f "/root/{{ chef.organization_id }}-validator.pem"
+
+- name: manage reconfigure
+  command: chef-manage-ctl reconfigure
+- name: push jobs reconfigure
+  command: opscode-push-jobs-server-ctl reconfigure
+- name: reporting reconfigure
+  command: opscode-reporting-ctl reconfigure
+
 
 - name: copy root keys
   shell: "mkdir -p /home/{{ admin_user }}/.ssh && cp /root/.ssh/* /home/{{ admin_user }}/.ssh && chmod -R 0700 /home/{{ admin_user }}/.ssh && chown -R {{ admin_user }}:{{ admin_user }} /home/{{ admin_user }}/.ssh"

@@ -1,0 +1,52 @@
+---
+- yum: state=present name={{ item }}
+  with_items:
+    - git
+    - epel-release
+  sudo: yes
+  sudo_user: root
+
+- name: enable the IUS repository
+  yum: name={{ ius_release }} state=present
+  sudo: yes
+  sudo_user: root
+
+- yum: state=present name={{ item }} enablerepo=ius
+  with_items:
+    - python27
+    - python27-devel
+    - python27-pip
+    - python27-setuptools
+    - python27-virtualenv
+  sudo: yes
+  sudo_user: root
+
+- name: Create letsencrypt etc dir
+  file: state=directory path={{ letsencrypt_etc_dir }} owner=root group=root mode=0644
+  sudo: yes
+  sudo_user: root
+
+- name: Add letsencrypt config
+  template: src=domain-webroot.ini.j2 dest={{ letsencrypt_domain_config }} owner=root group=root mode=0644
+  sudo: yes
+  sudo_user: root
+
+- name: Clone the letsencrypt repository.
+  git:
+    repo: "{{ letsencrypt_repo_url }}"
+    dest: "{{ letsencrypt_dir }}"
+  sudo: yes
+  sudo_user: root
+
+- shell: "{{ letsencrypt_dir }}/letsencrypt-auto certonly --webroot --agree-tos --renew-by-default --config {{ letsencrypt_domain_config }}"
+  args:
+    creates: "{{ cert_path }}/fullchain.pem"
+  sudo: yes
+  sudo_user: root
+  notify:
+  - nginx restart
+
+- name: put letsencrypt cron job
+  template: src=cron.d/letsencrypt.j2 dest=/etc/cron.weekly/letsencrypt owner=root group=root mode=0755
+  sudo: yes
+  sudo_user: root

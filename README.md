@@ -1,6 +1,7 @@
 ## Chef server 12 Deployment tools
 
-Manifests / modules to help the deploy of Chef server 12 on CentOS 6 with either Ansible
+Manifests / modules to help the deploy of Chef server 12 on CentOS 6 with either Ansible.
+LetsEncrypt Certificate generator included. Disabled by default.
 
 ## Background
 
@@ -68,6 +69,11 @@ For only Chef server 12 updates, with cleanup & modules update:
 For update Chef server 12 & CentOS 6 components via `yum`:
 
     $ ansible-playbook playbook.yml -i hosts --extra-vars="server_update=y"
+
+To integrate LetsEncrypt:
+1. Put `letsencrypt: yes` into `settings.yml`
+2. `$ ansible-playbook playbook.yml -i hosts`
+3. `$ ansible-playbook ssl.yml -i hosts`
 
 Open: https://YOUR_PRODUCTION_SERVER/
 

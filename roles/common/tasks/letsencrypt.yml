@@ -1,0 +1,5 @@
+---
+- name: Add letsencrypt to Nginx
+  template: src=10_letsencrypt_external.conf.j2 dest=/var/opt/opscode/nginx/etc/addon.d/10_letsencrypt_external.conf owner=root group=root mode=0644
+  notify:
+  - nginx restart

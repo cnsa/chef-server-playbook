@@ -11,6 +11,9 @@
 - include: install.yml
   when: chef_exist.stdout.find('chef-server') == -1
 
+- include: letsencrypt.yml
+  when: letsencrypt
+
 - name: update server
   yum: name=* state=latest
   when: chef_exist.stdout.find('chef-server') == -1 or server_update == 'y'
