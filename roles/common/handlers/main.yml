@@ -15,12 +15,12 @@
 # - include: chef.yml
 - name: chef reconfigure
   command: chef-server-ctl reconfigure
-- name: chef cleanup
-  command: chef-server-ctl cleanup
 - name: chef upgrade
   command: chef-server-ctl upgrade
 - name: chef start
   command: chef-server-ctl start
+- name: chef cleanup
+  command: chef-server-ctl cleanup
 - name: chef stop
   command: chef-server-ctl stop
 - name: nginx restart

@@ -3,9 +3,9 @@ admin_user: SERVER_ADMIN_USER
 
 letsencrypt: no
 
-chef_version: 12.6.0
+chef_version: 12.9.1
 chef_version_full: "{{ chef_version }}-1"
-chef_version_sum: 84b21be5bb38c2c6279a957359b614fcaa43c710e0ea516eb547701b7348246b
+chef_version_sum: 06ea7499dcd7eeef0629cee96ed58600376ac39484cc54efa5b37d68fa323e06
 
 chef_rpm:
   path: /path/to/local/chef/dir
