@@ -1,8 +1,17 @@
-deploy:
-	ansible-playbook playbook.yml -i hosts --limit="production"
+ENVIRONMENT	:= "production"
+PLAYBOOK	:= "playbook.yml"
 
-init:
-	ansible-playbook playbook.yml -i hosts --limit="production" --extra-vars="init=y"
+# Parameter 1: playbook file
+# Parameter 2: options
+define provision
+ansible-playbook $(1) $(2)
+endif
 
-upgrade:
-	ansible-playbook playbook.yml -i hosts --extra-vars="update=y"
+deploy: $(PLAYBOOK)
+	$(call provision, $<, "--limit=$(ENVIRONMENT)")
+	
+init: $(PLAYBOOK)
+	$(call provision, $<, "--limit=$(ENVIRONMENT) --extra-vars='init=y'")
+
+upgrade: $(PLAYBOOK)
+	$(call provision, $<, "--extra-vars='update=y'")
