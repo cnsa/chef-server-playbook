@@ -56,24 +56,24 @@ You can support it with [Direnv](https://github.com/zimbatm/direnv) or similar t
 
 For the first time if we need login as `root`:
 
-    $ ansible-playbook playbook.yml -i hosts --limit="production" --extra-vars="init=y"
+    $ ansible-playbook playbook.yml --limit="production" --extra-vars="init=y"
 
 Next time, when root access will be restricted:
 
-    $ ansible-playbook playbook.yml -i hosts --limit="production"
+    $ ansible-playbook playbook.yml --limit="production"
 
 For only Chef server 12 updates, with cleanup & modules update:
 
-    $ ansible-playbook playbook.yml -i hosts --extra-vars="update=y"
+    $ ansible-playbook playbook.yml --extra-vars="update=y"
 
 For update Chef server 12 & CentOS 6 components via `yum`:
 
-    $ ansible-playbook playbook.yml -i hosts --extra-vars="server_update=y"
+    $ ansible-playbook playbook.yml  --extra-vars="server_update=y"
 
 To integrate LetsEncrypt:
 1. Put `letsencrypt: yes` into `settings.yml`
-2. `$ ansible-playbook playbook.yml -i hosts`
-3. `$ ansible-playbook ssl.yml -i hosts`
+2. `$ ansible-playbook playbook.yml`
+3. `$ ansible-playbook ssl.yml`
 
 Open: https://YOUR_PRODUCTION_SERVER/
 
@@ -81,7 +81,7 @@ SSH: `$ ssh SERVER_ADMIN_USER@chef.cnsa.ru -i PATH_TO_YOUR_KEY_OR_ADD_DOMAIN_TO_
 
 ### Both:
 
-    $ ansible-playbook playbook.yml -i hosts  
+    $ ansible-playbook playbook.yml
 
 ## Configure Chef server 12
 
